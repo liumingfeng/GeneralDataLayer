@@ -39,7 +39,6 @@ _Resharper.*
 *.vspscc
 *.vssscc
 *.dll*
-!EF.CodeGenerators.dll
 *.Publish.xml
 !NuGet.exe
 
