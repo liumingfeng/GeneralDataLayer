@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralDataLayer", "GeneralDataLayer\GeneralDataLayer.csproj", "{DCABBB03-4884-4CF6-9825-9E9A4C70EBC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralDataLayer.UnitTest", "GeneralDataLayer.UnitTest\GeneralDataLayer.UnitTest.csproj", "{0E1A876D-F900-411B-851E-B5DA726FFF93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralDataLayer.UnitTest", "GeneralDataLayer.UnitTest\GeneralDataLayer.UnitTest.csproj", "{0E1A876D-F900-411B-851E-B5DA726FFF93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{9A6C34E0-84EA-4B1E-80D7-8B39FAFBFB84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0E1A876D-F900-411B-851E-B5DA726FFF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1A876D-F900-411B-851E-B5DA726FFF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E1A876D-F900-411B-851E-B5DA726FFF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A6C34E0-84EA-4B1E-80D7-8B39FAFBFB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6C34E0-84EA-4B1E-80D7-8B39FAFBFB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6C34E0-84EA-4B1E-80D7-8B39FAFBFB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6C34E0-84EA-4B1E-80D7-8B39FAFBFB84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using System.Data;
 
 namespace GeneralDataLayer.Mappings
 {
-    public static class SqlTypeUtils
+    internal static class SqlTypeUtils
     {
         private static readonly Hashtable _typeMap;
         static SqlTypeUtils()
@@ -31,7 +31,7 @@ namespace GeneralDataLayer.Mappings
             _typeMap.Add(typeof(DateTimeOffset), DbType.DateTimeOffset);
         }
         
-        public static DbType ResolveType(Type type)
+        internal static DbType ResolveType(Type type)
         {
             if (type != null)
             {

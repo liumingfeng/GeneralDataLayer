@@ -1,6 +1,6 @@
 ﻿namespace GeneralDataLayer.Dynamics.Interfaces
 {
-    public interface IDynamicDataInfo
+    internal interface IDynamicDataInfo
     {
         object GetValue(object obj);
 

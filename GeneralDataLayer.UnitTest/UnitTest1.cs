@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +27,7 @@ namespace GeneralDataLayer.UnitTest
             //Load all data
             List<Test1> all = await ExecutionHelper.ExecuteReaderListAsync<Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
 
-            Assert.Pass();
+            Assert.IsTrue(all.Count > 0);
         }
 
         [Test]
@@ -37,8 +40,7 @@ namespace GeneralDataLayer.UnitTest
             };
             Test1 part = await ExecutionHelper.ExecuteReaderAsync<Test1Query, Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadById]", query);
 
-
-            Assert.Pass();
+            Assert.IsTrue(part.Id == 8);
         }
 
         [Test]
@@ -51,7 +53,7 @@ namespace GeneralDataLayer.UnitTest
             };
             object name = await ExecutionHelper.ExecuteScalarAsync<Test1Query>(_connectionString, "[CAS].[dbo].[Test_1_LoadNameById]", query);
 
-            Assert.Pass();
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(name.ToString()));
         }
 
         [Test]
@@ -69,7 +71,7 @@ namespace GeneralDataLayer.UnitTest
             };
             await ExecutionHelper.ExecuteNonQueryAsync(_connectionString, "[CAS].[dbo].[Test_1_Add]", test1);
 
-            Assert.Pass();
+            Assert.IsTrue(test1.ReturnData == 8);
         }
     }
 }

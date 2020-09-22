@@ -4,7 +4,7 @@ using System.Reflection.Emit;
 
 namespace GeneralDataLayer.Dynamics.Implements
 {
-    static class DynamicMethodFactory
+    internal static class DynamicMethodFactory
     {
         /// <summary>
         /// create PropertyInfo get

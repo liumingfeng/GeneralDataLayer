@@ -4,7 +4,7 @@ using GeneralDataLayer.Dynamics.Interfaces;
 
 namespace GeneralDataLayer.Mappings.Implements
 {
-    public static class ReflectionManager
+    internal static class ReflectionManager
     {
         public static IDynamicDataInfo CreateDynamicInfo(PropertyInfo info)
         {

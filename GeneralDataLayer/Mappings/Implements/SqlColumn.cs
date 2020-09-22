@@ -7,9 +7,8 @@ namespace GeneralDataLayer.Mappings.Implements
     public class SqlColumn : IColumn
     {
         public string Name { get; }
-        public IDataBridge Data { get; }
+        private IDataBridge Data { get; }
         public Type DataType => Data.DataType;
-        public DbType? ColumnType => SqlTypeUtils.ResolveType(Data.DataType);
 
         public SqlColumn(string name, IDataBridge data)
         {

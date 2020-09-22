@@ -9,7 +9,7 @@ namespace GeneralDataLayer.Dynamics.Implements
 
     internal delegate void DynamicFieldSetHandler(object obj, object value);
 
-    public class DynamicFieldInfo : IDynamicDataInfo
+    internal class DynamicFieldInfo : IDynamicDataInfo
     {
         Type type;
 

@@ -3,7 +3,7 @@ using System.Reflection.Emit;
 
 namespace GeneralDataLayer.Dynamics.Implements
 {
-    static class OpCodesFactory
+    internal static class OpCodesFactory
     {
         public static void BoxIfNeeded(ILGenerator generator, Type type)
         {
