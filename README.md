@@ -1,23 +1,23 @@
 # GeneralDataLayer
-#How to use?
-#Example 1: Load a list from database by sp
+# How to use?
+# Example 1: Load a list from database by sp
   List<Test1> all = await ExecutionHelper.ExecuteReaderListAsync<Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
 
-#Examlpe 2: Load a entity from database
+# Examlpe 2: Load a entity from database
   Test1Query query = new Test1Query()
   {
       Id = 8
   };
   Test1 part = await ExecutionHelper.ExecuteReaderAsync<Test1Query, Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadById]", query);
 
-#Example 3: Load scalare object
+# Example 3: Load scalare object
   Test1Query query = new Test1Query()
   {
       Id = 8
   };
   object name = await ExecutionHelper.ExecuteScalarAsync<Test1Query>(_connectionString, "[CAS].[dbo].[Test_1_LoadNameById]", query);
   
-#Example 4: Add data to database
+# Example 4: Add data to database
   Test1 test1 = new Test1()
   {
       CreateDateTime = DateTime.Now,
@@ -29,7 +29,7 @@
   };
   await ExecutionHelper.ExecuteNonQueryAsync(_connectionString, "[CAS].[dbo].[Test_1_Add]", test1);
   
-#Set up Stored procedure params
+# Set up Stored procedure params
 public class Test1
 {
     ...
@@ -42,7 +42,7 @@ public class Test1
     ...
 }
 
-#Set up the returned columns to object:
+# Set up the returned columns to object:
 public class Test1
 {
     ...
@@ -53,7 +53,7 @@ public class Test1
     ...
 }
 
-#Support the rename of columns and params to object:
+# Support the rename of columns and params to object:
 public class Test1
 {
     ...
