@@ -11,57 +11,57 @@ namespace GeneralDataLayer.Dynamics.Implements
 
     internal class DynamicFieldInfo : IDynamicDataInfo
     {
-        Type type;
+        Type _type;
 
-        FieldInfo info;
+        FieldInfo _info;
 
-        DynamicFieldSetHandler setHandler;
+        DynamicFieldSetHandler _setHandler;
 
-        DynamicFieldGetHandler getHandler;
+        DynamicFieldGetHandler _getHandler;
 
         public DynamicFieldInfo(FieldInfo info)
         {
-            this.type = info.DeclaringType;
+            this._type = info.DeclaringType;
 
-            this.info = info;
+            this._info = info;
         }
 
         public object GetValue(object obj)
         {
-            if (this.getHandler != null)
+            if (this._getHandler != null)
             {
-                return this.getHandler(obj);
+                return this._getHandler(obj);
             }
 
-            int moduleKey = info.Module.GetHashCode();
-            int handlerKey = info.MetadataToken;
+            int moduleKey = _info.Module.GetHashCode();
+            int handlerKey = _info.MetadataToken;
 
-            this.getHandler = DynamicCacheFactory<DynamicFieldGetHandler>
+            this._getHandler = DynamicCacheFactory<DynamicFieldGetHandler>
                 .DictInstance
                 .GetOrAdd(moduleKey, innerModuleKey => new ConcurrentDictionary<int, DynamicFieldGetHandler>())
-                .GetOrAdd(handlerKey, innerHandlerKey => DynamicMethodFactory.CreateGetHandler(type, info));
+                .GetOrAdd(handlerKey, innerHandlerKey => DynamicMethodFactory.CreateGetHandler(_type, _info));
 
-            return this.getHandler(obj);
+            return this._getHandler(obj);
         }
 
         public void SetValue(object obj, object value)
         {
-            if (this.setHandler != null)
+            if (this._setHandler != null)
             {
-                this.setHandler(obj, value);
+                this._setHandler(obj, value);
 
                 return;
             }
 
-            int moduleKey = info.Module.GetHashCode();
-            int handlerKey = info.MetadataToken;
+            int moduleKey = _info.Module.GetHashCode();
+            int handlerKey = _info.MetadataToken;
 
-            this.setHandler = DynamicCacheFactory<DynamicFieldSetHandler>
+            this._setHandler = DynamicCacheFactory<DynamicFieldSetHandler>
                 .DictInstance
                 .GetOrAdd(moduleKey, innerModuleKey => new ConcurrentDictionary<int, DynamicFieldSetHandler>())
-                .GetOrAdd(handlerKey, innerHandlerKey => DynamicMethodFactory.CreateSetHandler(type, info));
+                .GetOrAdd(handlerKey, innerHandlerKey => DynamicMethodFactory.CreateSetHandler(_type, _info));
 
-            this.setHandler(obj, value);
+            this._setHandler(obj, value);
         }
     }
 }

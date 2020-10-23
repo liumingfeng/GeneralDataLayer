@@ -98,7 +98,7 @@ namespace GeneralDataLayer
             }
         }
 
-        public static async Task ExecuteNonQueryAsync<T>(string connectionString
+        public static async Task<int> ExecuteNonQueryAsync<T>(string connectionString
             , string storedProcedure
             , T entity)
         {
@@ -106,7 +106,7 @@ namespace GeneralDataLayer
 
             var parameters = wraps.Select(o => o.SqlParameter).ToArray();
 
-            await ExecuteNonQueryAsync(connectionString, storedProcedure, parameters);
+            int result = await ExecuteNonQueryAsync(connectionString, storedProcedure, parameters);
 
 
             var outputWraps = wraps.FindAll(p => p.SqlParameter.Direction == ParameterDirection.Output 
@@ -117,9 +117,11 @@ namespace GeneralDataLayer
             {
                 outputWrap.DataBridge.Write(entity, outputWrap.SqlParameter.Value);
             }
+
+            return result;
         }
 
-        public static async Task ExecuteNonQueryAsync(string connectionString
+        public static async Task<int> ExecuteNonQueryAsync(string connectionString
             , string storedProcedure
             , SqlParameter[] parameters = null)
         {
@@ -135,7 +137,7 @@ namespace GeneralDataLayer
                 }
 
                 await connection.OpenAsync(CancellationToken.None);
-                await dbCommand.ExecuteNonQueryAsync(CancellationToken.None);
+                return await dbCommand.ExecuteNonQueryAsync(CancellationToken.None);
             }
         }
 
