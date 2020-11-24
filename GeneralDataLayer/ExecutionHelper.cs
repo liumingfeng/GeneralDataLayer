@@ -13,42 +13,42 @@ namespace GeneralDataLayer
     public static class ExecutionHelper
     {
         public static async Task<TReturn> ExecuteReaderAsync<TParams, TReturn>(string connectionString
-            , string storedProcedure
-            , TParams tp)
+            , CommandContent commandContent
+            , TParams paramsObj)
         {
-            var wraps = ParameterWrapsFactory.ToParameterWraps(tp);
+            var wraps = ParameterWrapsFactory.ToParameterWraps(paramsObj);
             var parameters = wraps.Select(o => o.SqlParameter).ToArray();
 
-            return await ExecuteReaderAsync<TReturn>(connectionString, storedProcedure, parameters);
+            return await ExecuteReaderAsync<TReturn>(connectionString, commandContent, parameters);
         }
 
         public static async Task<T> ExecuteReaderAsync<T>(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , SqlParameter[] parameters = null)
         {
-            var list = await ExecuteReaderListAsync<T>(connectionString, storedProcedure, parameters);
+            var list = await ExecuteReaderListAsync<T>(connectionString, commandContent, parameters);
             return list.FirstOrDefault();
         }
 
         public static async Task<List<TReturn>> ExecuteReaderListAsync<TParams, TReturn>(string connectionString
-            , string storedProcedure
-            , TParams tp)
+            , CommandContent commandContent
+            , TParams paramsObj)
         {
-            var wraps = ParameterWrapsFactory.ToParameterWraps(tp);
+            var wraps = ParameterWrapsFactory.ToParameterWraps(paramsObj);
             var parameters = wraps.Select(o => o.SqlParameter).ToArray();
 
-            return await ExecuteReaderListAsync<TReturn>(connectionString, storedProcedure, parameters);
+            return await ExecuteReaderListAsync<TReturn>(connectionString, commandContent, parameters);
         }
 
         public static async Task<List<T>> ExecuteReaderListAsync<T>(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , SqlParameter[] parameters = null)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                using (var dbCommand = new SqlCommand(storedProcedure, connection)
+                using (var dbCommand = new SqlCommand(commandContent.Value, connection)
                 {
-                    CommandType = CommandType.StoredProcedure
+                    CommandType = commandContent.Type
                 })
                 {
                     if (parameters != null && parameters.Length > 0)
@@ -99,14 +99,14 @@ namespace GeneralDataLayer
         }
 
         public static async Task<int> ExecuteNonQueryAsync<T>(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , T entity)
         {
             var wraps = ParameterWrapsFactory.ToParameterWraps(entity);
 
             var parameters = wraps.Select(o => o.SqlParameter).ToArray();
 
-            int result = await ExecuteNonQueryAsync(connectionString, storedProcedure, parameters);
+            int result = await ExecuteNonQueryAsync(connectionString, commandContent, parameters);
 
 
             var outputWraps = wraps.FindAll(p => p.SqlParameter.Direction == ParameterDirection.Output 
@@ -122,13 +122,13 @@ namespace GeneralDataLayer
         }
 
         public static async Task<int> ExecuteNonQueryAsync(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , SqlParameter[] parameters = null)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var dbCommand = new SqlCommand(storedProcedure, connection)
+            using (var dbCommand = new SqlCommand(commandContent.Value, connection)
             {
-                CommandType = CommandType.StoredProcedure
+                CommandType = commandContent.Type
             })
             {
                 if (parameters.Length > 0)
@@ -142,23 +142,23 @@ namespace GeneralDataLayer
         }
 
         public static async Task<object> ExecuteScalarAsync<TParams>(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , TParams tp)
         {
             var wraps = ParameterWrapsFactory.ToParameterWraps(tp);
             var parameters = wraps.Select(o => o.SqlParameter).ToArray();
 
-            return await ExecuteScalarAsync(connectionString, storedProcedure, parameters);
+            return await ExecuteScalarAsync(connectionString, commandContent, parameters);
         }
 
         public static async Task<object> ExecuteScalarAsync(string connectionString
-            , string storedProcedure
+            , CommandContent commandContent
             , SqlParameter[] parameters = null)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var dbCommand = new SqlCommand(storedProcedure, connection)
+            using (var dbCommand = new SqlCommand(commandContent.Value, connection)
             {
-                CommandType = CommandType.StoredProcedure
+                CommandType = commandContent.Type
             })
             {
                 if (parameters.Length > 0)
@@ -484,4 +484,11 @@ namespace GeneralDataLayer
             return bytes;
         }
     }
+
+    public class CommandContent
+    {
+        public CommandType Type{ get; set; }
+        public string Value { get; set; }
+    }
+
 }
