@@ -30,7 +30,7 @@ namespace GeneralDataLayer.UnitTest
                 Type = CommandType.StoredProcedure,
                 Value = "[CAS].[dbo].[Test_1_LoadAll]"
             };
-            List<Test1> all = await ExecutionHelper.ExecuteReaderListAsync<Test1>(_connectionString, commandContent);
+            List<Test2> all = await ExecutionHelper.ExecuteReaderListAsync<Test2>(_connectionString, commandContent);
 
             Assert.IsTrue(all.Count > 0);
         }
