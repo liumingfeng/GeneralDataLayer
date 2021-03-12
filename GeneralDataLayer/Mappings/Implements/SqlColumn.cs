@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using GeneralDataLayer.Mappings.Interfaces;
 
 namespace GeneralDataLayer.Mappings.Implements

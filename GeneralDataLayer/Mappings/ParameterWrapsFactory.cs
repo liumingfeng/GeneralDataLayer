@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using GeneralDataLayer.Mappings.Implements;
 using GeneralDataLayer.Mappings.Interfaces;
+using Microsoft.Data.SqlClient;
 
 namespace GeneralDataLayer.Mappings
 {

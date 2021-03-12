@@ -1,12 +1,12 @@
-﻿using GeneralDataLayer.Mappings;
-using GeneralDataLayer.Mappings.Implements;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GeneralDataLayer.Mappings;
+using GeneralDataLayer.Mappings.Implements;
+using Microsoft.Data.SqlClient;
 
 namespace GeneralDataLayer
 {

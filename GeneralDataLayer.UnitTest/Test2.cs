@@ -1,7 +1,6 @@
-﻿using GeneralDataLayer.Mappings;
-using System;
-using System.Data;
+﻿using System;
 using System.Globalization;
+using GeneralDataLayer.Mappings;
 
 namespace GeneralDataLayer.UnitTest
 {

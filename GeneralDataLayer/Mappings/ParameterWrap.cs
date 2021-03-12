@@ -1,5 +1,5 @@
 ﻿using GeneralDataLayer.Mappings.Interfaces;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace GeneralDataLayer.Mappings
 {

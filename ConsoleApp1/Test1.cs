@@ -1,7 +1,7 @@
-﻿using GeneralDataLayer.Mappings;
-using System;
+﻿using System;
 using System.Data;
 using System.Globalization;
+using GeneralDataLayer.Mappings;
 
 namespace ConsoleApp1
 {
