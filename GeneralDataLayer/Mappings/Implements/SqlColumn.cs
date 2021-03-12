@@ -27,7 +27,7 @@ namespace GeneralDataLayer.Mappings.Implements
             }
             catch (Exception ex)
             {
-                throw new Exception("属性：" + Name + "将值：" + val + "映射失败", ex);
+                throw new Exception("Property is" + Name + " and set " + val +" as the value failed.", ex);
             }
         }
     }
