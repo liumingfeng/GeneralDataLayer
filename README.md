@@ -1,4 +1,5 @@
 # GeneralDataLayer
+It is an excellent database access layer class library.It is very simple to use, has no learning cost, provides very useful functionality, and has excellent performance.
 # How to use?
 # Example 1: Load a list from database by sp
 	List<Test1> all = await ExecutionHelper.ExecuteReaderListAsync<Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
