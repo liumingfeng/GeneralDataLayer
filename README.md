@@ -8,14 +8,14 @@
   {
       Id = 8
   };
-  Test1 part = await ExecutionHelper.ExecuteReaderAsync<Test1Query, Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadById]", query);
+  Test1 part = await ExecutionHelper.ExecuteReaderAsync\<Test1Query, Test1\>(_connectionString, "[CAS].[dbo].[Test_1_LoadById]", query);
 
 # Example 3: Load scalare object
   Test1Query query = new Test1Query()
   {
       Id = 8
   };
-  object name = await ExecutionHelper.ExecuteScalarAsync<Test1Query>(_connectionString, "[CAS].[dbo].[Test_1_LoadNameById]", query);
+  object name = await ExecutionHelper.ExecuteScalarAsync\<Test1Query\>(_connectionString, "[CAS].[dbo].[Test_1_LoadNameById]", query);
   
 # Example 4: Add data to database
   Test1 test1 = new Test1()
