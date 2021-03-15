@@ -8,7 +8,7 @@
   {
       Id = 8
   };
-  
+  <br \>
   Test1 part = await ExecutionHelper.ExecuteReaderAsync\<Test1Query, Test1\>(_connectionString, "[CAS].[dbo].[Test_1_LoadById]", query);
 
 # Example 3: Load scalare object
