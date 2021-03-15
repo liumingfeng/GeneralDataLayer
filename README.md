@@ -4,7 +4,7 @@
   List\<Test1\> all = await ExecutionHelper.ExecuteReaderListAsync\<Test1\>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
 
 # Examlpe 2: Load a entity from database
-  Test1Query query = new Test1Query() \r\n
+  Test1Query query = new Test1Query()
   {
       Id = 8
   };
