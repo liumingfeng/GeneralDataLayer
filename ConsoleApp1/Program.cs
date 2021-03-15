@@ -16,7 +16,6 @@ namespace ConsoleApp1
             //Prepare test data
             DataTable dataTable = LoadDataToDataTable();
 
-            GC.Collect();
             Stopwatch watch1 = new Stopwatch();
             watch1.Start();
             List<Test1> all = ExecutionHelper.GenerateListByDataTable<Test1>(dataTable);
@@ -56,19 +55,18 @@ namespace ConsoleApp1
             DataTable dataTable = new DataTable();
             string query = "[CAS].[dbo].[Test_1_LoadAll]";
 
-            SqlConnection conn = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand(query, conn)
+            using SqlConnection conn = new SqlConnection(_connectionString);
+            using SqlCommand cmd = new SqlCommand(query, conn)
             {
                 CommandType = CommandType.StoredProcedure
             };
             conn.Open();
 
             // create data adapter
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            using SqlDataAdapter da = new SqlDataAdapter(cmd);
             // this will query your database and return the result to your datatable
             da.Fill(dataTable);
-            conn.Close();
-            da.Dispose();
+
             return dataTable;
         }
 

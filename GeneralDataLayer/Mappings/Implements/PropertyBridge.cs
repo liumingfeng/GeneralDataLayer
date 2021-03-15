@@ -24,11 +24,13 @@ namespace GeneralDataLayer.Mappings.Implements
 
         public object Read(object obj)
         {
+            //return _propertyInfo.GetValue(obj);
             return _sor.GetValue(obj);
         }
 
         public void Write(object obj, object val)
         {
+            //_propertyInfo.SetValue(obj, val);
             _sor.SetValue(obj, val);
         }
     }
