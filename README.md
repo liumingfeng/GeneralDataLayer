@@ -1,7 +1,7 @@
 # GeneralDataLayer
 # How to use?
 # Example 1: Load a list from database by sp
-  List<Test1> all = await ExecutionHelper.ExecuteReaderListAsync<Test1>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
+  List\<Test1\> all = await ExecutionHelper.ExecuteReaderListAsync\<Test1\>(_connectionString, "[CAS].[dbo].[Test_1_LoadAll]");
 
 # Examlpe 2: Load a entity from database
   Test1Query query = new Test1Query()
